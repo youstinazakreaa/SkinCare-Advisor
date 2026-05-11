@@ -1,0 +1,145 @@
+<div class="min-h-screen bg-[#F7F3F0] px-6 py-8 flex items-center justify-center">
+  <div class="w-full max-w-lg">
+
+    <div
+      class="relative overflow-hidden rounded-[28px] border border-[#eadfd9] bg-white p-8 shadow-[0_18px_45px_rgba(75,55,48,0.08)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(75,55,48,0.12)]"
+    >
+
+      <div class="absolute -top-16 -right-16 h-36 w-36 rounded-full bg-[#f3d5cb]/40 blur-3xl"></div>
+
+      <div class="relative z-10 text-center">
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#fff3ee] text-2xl shadow-sm animate-pulse">
+          ✦
+        </div>
+
+        <h2 class="mt-5 text-3xl font-semibold text-[#3f2f2a]">
+          Create account
+        </h2>
+
+        <p class="mt-2 text-sm text-[#7d655d]">
+          Start your personalized skincare journey.
+        </p>
+      </div>
+
+      <div class="relative z-10 mt-6 space-y-4">
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-[#5f4a43]">
+            Full name
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="fullName"
+            (blur)="nameTouched = true"
+            placeholder="Enter your full name"
+            class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition duration-300 hover:border-[#d7b2a7] focus:border-[#D9AFA3]"
+            [ngClass]="(submitted || nameTouched) && !isValidFullName(fullName) ? 'border-red-400' : 'border-[#E9DDD7]'"
+          />
+
+          <p
+            *ngIf="(submitted || nameTouched) && !isValidFullName(fullName)"
+            class="mt-2 text-sm text-red-500"
+          >
+            Please enter your full name without numbers.
+          </p>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-[#5f4a43]">
+            Email address
+          </label>
+
+          <input
+            type="email"
+            [(ngModel)]="email"
+            (blur)="emailTouched = true"
+            placeholder="name&#64;gmail.com"
+            class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition duration-300 hover:border-[#d7b2a7] focus:border-[#D9AFA3]"
+            [ngClass]="(submitted || emailTouched) && !isValidEmail(email) ? 'border-red-400' : 'border-[#E9DDD7]'"
+          />
+
+          <p
+            *ngIf="(submitted || emailTouched) && !isValidEmail(email)"
+            class="mt-2 text-sm text-red-500"
+          >
+            Please enter a valid email like: name&#64;gmail.com
+          </p>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-[#5f4a43]">
+            Password
+          </label>
+
+          <input
+            type="password"
+            [(ngModel)]="password"
+            (blur)="passwordTouched = true"
+            placeholder="Create a password"
+            class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition duration-300 hover:border-[#d7b2a7] focus:border-[#D9AFA3]"
+            [ngClass]="(submitted || passwordTouched) && !isValidPassword(password) ? 'border-red-400' : 'border-[#E9DDD7]'"
+          />
+
+          <p
+            *ngIf="(submitted || passwordTouched) && !isValidPassword(password)"
+            class="mt-2 text-sm text-red-500"
+          >
+            Password must be at least 8 characters.
+          </p>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-[#5f4a43]">
+            Confirm password
+          </label>
+
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            (blur)="confirmPasswordTouched = true"
+            placeholder="Confirm your password"
+            class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition duration-300 hover:border-[#d7b2a7] focus:border-[#D9AFA3]"
+            [ngClass]="(submitted || confirmPasswordTouched) && password !== confirmPassword ? 'border-red-400' : 'border-[#E9DDD7]'"
+          />
+
+          <p
+            *ngIf="(submitted || confirmPasswordTouched) && !confirmPassword.trim()"
+            class="mt-2 text-sm text-red-500"
+          >
+            Confirm password is required.
+          </p>
+
+          <p
+            *ngIf="(submitted || confirmPasswordTouched) && confirmPassword.trim() && password !== confirmPassword"
+            class="mt-2 text-sm text-red-500"
+          >
+            Passwords must match.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          (click)="createAccount()"
+          [disabled]="!isFormValid"
+          class="w-full rounded-2xl bg-[#D9AFA3] py-3 font-medium text-white shadow-sm transition duration-300 hover:-translate-y-[2px] hover:bg-[#c99588] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Create Account
+        </button>
+
+        <a
+          routerLink="/login"
+          class="inline-flex w-full justify-center rounded-2xl border border-[#E5D7D1] bg-white py-3 font-medium transition duration-300 hover:-translate-y-[2px] hover:bg-[#F6ECE7] hover:shadow-md"
+        >
+          Already have an account?
+        </a>
+      </div>
+
+      <div class="mt-6 h-[3px] overflow-hidden rounded-full bg-[#f4e5df]">
+        <div class="h-full w-2/3 animate-pulse rounded-full bg-[#d9afa3]"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

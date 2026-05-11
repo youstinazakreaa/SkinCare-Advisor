@@ -1,0 +1,87 @@
+<div class="space-y-6">
+  <div>
+    <h2 class="text-2xl font-semibold">Conflict Rules</h2>
+    <p class="mt-1 text-sm text-slate-500">
+      Manage skincare ingredient or product combinations that should not be used together.
+    </p>
+  </div>
+
+  <div
+    *ngIf="isLoading"
+    class="rounded-2xl border border-[#eadad3] bg-white p-4 text-sm text-slate-500"
+  >
+    Loading conflicts...
+  </div>
+
+  <div class="rounded-[30px] border border-[#eadad3] bg-white p-6 shadow-sm">
+    <h3 class="mb-5 text-xl font-semibold">Add Conflict Rule</h3>
+
+    <div class="grid gap-4 md:grid-cols-3">
+      <input
+        [(ngModel)]="formConflict.productOne"
+        placeholder="First product / ingredient"
+        class="rounded-2xl border border-[#eadad3] px-4 py-3 text-sm outline-none"
+      />
+
+      <input
+        [(ngModel)]="formConflict.productTwo"
+        placeholder="Second product / ingredient"
+        class="rounded-2xl border border-[#eadad3] px-4 py-3 text-sm outline-none"
+      />
+
+      <input
+        [(ngModel)]="formConflict.reason"
+        placeholder="Reason"
+        class="rounded-2xl border border-[#eadad3] px-4 py-3 text-sm outline-none"
+      />
+    </div>
+
+    <button
+      (click)="addConflict()"
+      class="mt-5 rounded-2xl bg-[#d8a99c] px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:opacity-90"
+    >
+      + Save Conflict
+    </button>
+  </div>
+
+  <div class="rounded-[30px] border border-[#eadad3] bg-white p-6 shadow-sm">
+    <div class="mb-4 flex items-center justify-between">
+      <h3 class="text-xl font-semibold">Saved Rules</h3>
+
+      <span class="rounded-full bg-[#fbf5f2] px-4 py-2 text-sm text-slate-600">
+        {{ conflicts.length }} rules
+      </span>
+    </div>
+
+    <div class="space-y-4">
+      <div
+        *ngFor="let conflict of conflicts"
+        class="flex flex-col gap-4 rounded-2xl border border-[#f0e4df] bg-[#fffdfc] p-4 md:flex-row md:items-center md:justify-between"
+      >
+        <div>
+          <h4 class="font-semibold text-slate-800">
+            {{ conflict.productOne }} + {{ conflict.productTwo }}
+          </h4>
+
+          <p class="mt-1 text-sm text-slate-500">
+            {{ conflict.reason }}
+          </p>
+        </div>
+
+        <button
+          (click)="deleteConflict(conflict)"
+          class="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-600 hover:bg-red-100"
+        >
+          Delete
+        </button>
+      </div>
+
+      <p
+        *ngIf="conflicts.length === 0 && !isLoading"
+        class="py-8 text-center text-sm text-slate-500"
+      >
+        No conflict rules found.
+      </p>
+    </div>
+  </div>
+</div>

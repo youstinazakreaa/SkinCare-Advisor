@@ -1,0 +1,110 @@
+<header class="sticky top-0 z-50 w-full border-b border-[#ddd2cc] bg-[#fcfbfa]/60 backdrop-blur-lg">
+  <div class="max-w-[1280px] mx-auto h-[72px] px-6 flex items-center">
+
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full bg-[#f1ddd6] flex items-center justify-center text-[#c28f81] text-sm">
+        ✦
+      </div>
+
+      <div class="leading-tight">
+        <h1 class="text-[14px] font-medium text-[#222]">SkinCare Advisor</h1>
+        <p class="text-[10px] text-[#9a9a9a]">interactive website preview</p>
+      </div>
+    </div>
+
+    <nav class="flex-1 flex justify-center items-center gap-6">
+      <a
+        routerLink="/"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Home
+      </a>
+
+      <a
+        *ngIf="!isLoggedIn"
+        routerLink="/login"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Login
+      </a>
+
+      <a
+        *ngIf="!isLoggedIn"
+        routerLink="/register"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Register
+      </a>
+
+      <a
+        *ngIf="isLoggedIn && userRole !== 'Admin'"
+        routerLink="/analysis"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Skin Analysis
+      </a>
+
+      <a
+        *ngIf="isLoggedIn && userRole !== 'Admin'"
+        routerLink="/products"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Products
+      </a>
+
+      <a
+        *ngIf="isLoggedIn && userRole !== 'Admin'"
+        routerLink="/routine"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Routine
+      </a>
+
+      <a
+        *ngIf="isLoggedIn && userRole !== 'Admin'"
+        routerLink="/dashboard"
+        routerLinkActive="text-[#c28f81] after:w-full bg-[#f8eeea]"
+        class="relative px-3 py-1.5 rounded-md text-[14px] text-[#444] transition duration-300 hover:bg-[#f3e3dd] hover:text-[#c28f81]
+               after:content-[''] after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-[#c28f81]
+               after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Dashboard
+      </a>
+
+    
+    </nav>
+
+    <div *ngIf="isLoggedIn" class="flex items-center gap-3">
+      <span class="hidden md:inline text-sm text-[#6b5149]">
+        Hi, {{ userName }}
+      </span>
+
+      <button
+        (click)="logout()"
+        class="rounded-2xl border border-[#d9afa3] bg-white px-4 py-2 text-sm text-[#6b5149] transition hover:bg-[#fff5f1]"
+      >
+        Logout
+      </button>
+    </div>
+
+  </div>
+</header>

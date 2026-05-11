@@ -1,0 +1,124 @@
+<div class="min-h-screen bg-[#F7F3F0] px-6 py-10 flex items-center justify-center">
+  <div class="w-full max-w-md">
+
+    <div
+      class="relative overflow-hidden rounded-[30px] border border-[#eadfd9] bg-white/90 p-7 shadow-[0_20px_50px_rgba(0,0,0,0.06)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)]"
+    >
+      <div class="absolute -top-16 -right-16 h-32 w-32 rounded-full bg-[#f3d5cb]/40 blur-3xl"></div>
+      <div class="absolute top-5 right-5 h-2.5 w-2.5 rounded-full bg-[#d9afa3] animate-pulse"></div>
+
+      <div class="relative z-10">
+        <div class="flex h-14 w-14 items-center justify-center rounded-[22px] bg-[#fff3ee] text-2xl shadow-sm">
+          ✦
+        </div>
+
+        <h2 class="mt-6 text-3xl font-semibold tracking-tight text-[#3f2f2a]">
+          Welcome back
+        </h2>
+
+        <p class="mt-3 text-sm leading-7 text-[#7d655d]">
+          Continue your personalized skincare journey.
+        </p>
+
+        <div class="mt-7 space-y-4">
+
+          <div>
+            <label class="mb-2 block text-sm font-medium text-[#5f4a43]">Full name</label>
+
+            <input
+              type="text"
+              [(ngModel)]="userName"
+              (blur)="nameTouched = true"
+              placeholder="Enter your full name"
+              class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition focus:border-[#D9AFA3]"
+              [ngClass]="(submitted || nameTouched) && !isValidFullName(userName) ? 'border-red-400' : 'border-[#E9DDD7]'"
+            />
+
+            <p *ngIf="(submitted || nameTouched) && !isValidFullName(userName)" class="mt-2 text-sm text-red-500">
+              Please enter your full name without numbers.
+            </p>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-medium text-[#5f4a43]">
+              Email address
+            </label>
+
+            <input
+              type="email"
+              [(ngModel)]="email"
+              (blur)="emailTouched = true"
+              placeholder="name&#64;gmail.com"
+              class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition focus:border-[#D9AFA3]"
+              [ngClass]="(submitted || emailTouched) && !isValidEmail(email) ? 'border-red-400' : 'border-[#E9DDD7]'"
+            />
+
+            <p *ngIf="(submitted || emailTouched) && !isValidEmail(email)" class="mt-2 text-sm text-red-500">
+              Please enter a valid email like: name&#64;gmail.com
+            </p>
+          </div>
+
+          <div>
+            <label class="mb-2 block text-sm font-medium text-[#5f4a43]">Password</label>
+
+            <input
+              type="password"
+              [(ngModel)]="password"
+              (blur)="passwordTouched = true"
+              placeholder="Enter your password"
+              class="w-full rounded-2xl border bg-[#FCFAF8] px-4 py-3 outline-none transition focus:border-[#D9AFA3]"
+              [ngClass]="(submitted || passwordTouched) && !isValidPassword(password) ? 'border-red-400' : 'border-[#E9DDD7]'"
+            />
+
+            <p *ngIf="submitted && !password.trim()" class="mt-2 text-sm text-red-500">
+              Password is required.
+            </p>
+
+            <p *ngIf="(submitted || passwordTouched) && !isValidPassword(password)" class="mt-2 text-sm text-red-500">
+              Password must be at least 8 characters.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center gap-2 text-[#6b5149]">
+              <input type="checkbox" [(ngModel)]="rememberMe" class="rounded" />
+              Remember me
+            </label>
+
+            <button type="button" class="font-medium text-[#B98979] hover:underline">
+              Forgot password?
+            </button>
+          </div>
+
+          <div
+            *ngIf="errorMessage"
+            class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+          >
+            {{ errorMessage }}
+          </div>
+
+          <button
+            type="button"
+            (click)="signIn()"
+            [disabled]="!isFormValid"
+            class="w-full rounded-2xl bg-[#D9AFA3] py-3 font-medium text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Sign In
+          </button>
+
+          <a
+            routerLink="/register"
+            class="inline-flex w-full justify-center rounded-2xl border border-[#E5D7D1] bg-white py-3 font-medium transition hover:bg-[#F6ECE7]"
+          >
+            Create New Account
+          </a>
+        </div>
+
+        <div class="mt-6 h-[3px] overflow-hidden rounded-full bg-[#f4e5df]">
+          <div class="h-full w-2/3 animate-pulse rounded-full bg-[#d9afa3]"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

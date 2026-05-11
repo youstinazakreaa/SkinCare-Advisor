@@ -1,0 +1,454 @@
+<section class="min-h-screen bg-[#F7F3F0] px-6 py-8">
+  <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.35fr_0.75fr]">
+
+    <!-- LEFT -->
+    <div class="card-enter rounded-[28px] border border-[#e1cfc7] bg-white p-7 shadow-sm ai-card-hover">
+      <div class="mb-5 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-xs font-medium text-[#c28f81]">
+            Step-by-step skin analysis
+          </p>
+          <h1 class="mt-1 text-3xl font-semibold text-[#3f2f2a]">
+            Tell us about your skin
+          </h1>
+        </div>
+
+        <p class="text-xs text-[#9b8178]">
+          9 sections • smarter results
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+
+        <!-- 1 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            1. What is your skin type?
+          </h3>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              *ngFor="let x of ['Oily','Dry','Combination','Sensitive']"
+              (click)="skinType = x"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="skinType === x ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            2. Which age group are you in?
+          </h3>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button
+              *ngFor="let x of ['Under 20','20-40','Above 40']"
+              (click)="ageGroup = x"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="ageGroup === x ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            3. What are your main concerns?
+          </h3>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              *ngFor="let x of ['Acne','Dark Spots','Dryness','Redness','Wrinkles','Large Pores']"
+              (click)="toggleConcern(x)"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="concerns.includes(x) ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            4. Tell us about your habits
+          </h3>
+
+          <div class="grid grid-cols-1 gap-2">
+            <button
+              *ngFor="let x of ['Use skincare daily','Wear sunscreen','Use exfoliants often','Try many products']"
+              (click)="toggleHabit(x)"
+              class="rounded-xl border px-3 py-2 text-left text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="habits.includes(x) ? 'border-[#d7a79b] bg-[#fff1eb] text-[#4b3730]' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            5. What is your budget?
+          </h3>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button
+              *ngFor="let x of ['Affordable','Mid-range','Premium']"
+              (click)="budget = x"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="budget === x ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            6. How much sun exposure do you get?
+          </h3>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button
+              *ngFor="let x of ['Low','Moderate','High']"
+              (click)="sunExposure = x"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="sunExposure === x ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            7. How much water do you drink daily?
+          </h3>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button
+              *ngFor="let x of ['Low','Medium','High']"
+              (click)="waterLevel = x"
+              class="rounded-xl border px-3 py-2 text-xs font-medium transition hover:bg-[#fff5f1]"
+              [ngClass]="waterLevel === x ? 'border-[#d7a79b] bg-[#d9afa3] text-white' : 'border-[#e1cfc7] bg-white text-[#4b3730]'"
+            >
+              {{ x }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div>
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            8. Pick your current products
+          </h3>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              *ngFor="let p of productCatalog"
+              (click)="toggleProduct(p)"
+              class="rounded-xl border px-3 py-2 text-left transition hover:bg-[#fff5f1]"
+              [ngClass]="selectedProducts.includes(p) ? 'border-[#d7a79b] bg-[#fff1eb]' : 'border-[#e1cfc7] bg-white'"
+            >
+              <span class="block text-[11px] font-semibold text-[#4b3730]">
+                {{ p }}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="md:col-span-2">
+          <h3 class="mb-2 text-sm font-semibold text-[#3f2f2a]">
+            9. Additional details
+          </h3>
+
+          <div class="grid gap-2 md:grid-cols-2">
+            <div
+              *ngFor="let q of yesNoQuestions"
+              class="flex items-center justify-between gap-3 rounded-xl border border-[#e5d2ca] bg-[#fffaf8] px-3 py-2"
+            >
+              <span class="text-xs text-[#6b5149]">
+                {{ q.question }}
+              </span>
+
+              <div class="flex gap-2">
+                <button
+                  (click)="setAnswer(q.key, 'Yes')"
+                  class="rounded-lg border px-3 py-1 text-[11px] transition"
+                  [ngClass]="answers[q.key] === 'Yes' ? 'border-[#d7a79b] bg-[#f1ddd6] text-[#6b5149]' : 'border-[#eadbd5] bg-white text-[#8b746b]'"
+                >
+                  Yes
+                </button>
+
+                <button
+                  (click)="setAnswer(q.key, 'No')"
+                  class="rounded-lg border px-3 py-1 text-[11px] transition"
+                  [ngClass]="answers[q.key] === 'No' ? 'border-[#d7a79b] bg-[#f7e8e3] text-[#9a6b5b]' : 'border-[#eadbd5] bg-white text-[#8b746b]'"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Lifestyle -->
+      <div class="mt-5 rounded-[22px] border border-[#e5d2ca] bg-[#fffaf8] p-4">
+        <h3 class="mb-3 text-sm font-semibold text-[#3f2f2a]">
+          Lifestyle check
+        </h3>
+
+        <div class="grid gap-2 md:grid-cols-3">
+          <div
+            *ngFor="let q of lifestyleQuestions"
+            class="rounded-xl border border-[#eadbd5] bg-white px-3 py-3"
+          >
+            <p class="mb-2 text-xs text-[#6b5149]">
+              {{ q.question }}
+            </p>
+
+            <div class="flex gap-2">
+              <button
+                (click)="setAnswer(q.key, 'Yes')"
+                class="flex-1 rounded-lg border px-3 py-1 text-[11px] transition"
+                [ngClass]="answers[q.key] === 'Yes' ? 'border-[#d7a79b] bg-[#f1ddd6] text-[#6b5149]' : 'border-[#eadbd5] bg-white text-[#8b746b]'"
+              >
+                Yes
+              </button>
+
+              <button
+                (click)="setAnswer(q.key, 'No')"
+                class="flex-1 rounded-lg border px-3 py-1 text-[11px] transition"
+                [ngClass]="answers[q.key] === 'No' ? 'border-[#d7a79b] bg-[#f7e8e3] text-[#9a6b5b]' : 'border-[#eadbd5] bg-white text-[#8b746b]'"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-6 flex flex-wrap justify-end gap-3">
+   <button
+  (click)="generateRoutine()"
+  [disabled]="!isFormValid() || isLoading"
+  class="rounded-2xl px-6 py-3 text-sm font-medium text-white transition"
+  [ngClass]="isFormValid() && !isLoading ? 'bg-[#d9afa3] hover:bg-[#c99588]' : 'bg-gray-300 cursor-not-allowed'"
+>
+  <span *ngIf="!isLoading">Generate Routine</span>
+  <span *ngIf="isLoading">Generating...</span>
+</button>
+        <button
+          (click)="viewProducts()"
+          [disabled]="!isFormValid()"
+          class="rounded-2xl border px-6 py-3 text-sm font-medium transition"
+          [ngClass]="isFormValid() ? 'border-[#d9afa3] bg-white text-[#6b5149] hover:bg-[#fff5f1]' : 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'"
+        >
+          View Products
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-- RIGHT -->
+    <div class="space-y-6">
+      <div class="card-enter-delay-1 rounded-[26px] border border-[#e1cfc7] bg-[#fffaf8] p-6 shadow-sm ai-card-hover">
+        <h3 class="mb-4 text-lg font-semibold text-[#3f2f2a]">
+          Why these questions?
+        </h3>
+
+        <ul class="space-y-4 text-sm text-[#6b5149]">
+          <li>◎ Skin type helps choose the base routine.</li>
+          <li>◎ Age group changes routine focus.</li>
+          <li>◎ Water intake affects hydration guidance.</li>
+          <li>◎ Sun exposure increases sunscreen priority.</li>
+          <li>◎ Budget helps suggest realistic products.</li>
+          <li>◎ Current products help detect conflicts.</li>
+        </ul>
+      </div>
+      <div class="card-enter-delay-2 rounded-[26px] border border-[#e1cfc7] bg-white p-6 shadow-sm ai-card-hover">
+        <h3 class="mb-4 text-lg font-semibold text-[#3f2f2a]">
+          Selected summary
+        </h3>
+
+        <div class="grid grid-cols-2 gap-4 text-sm text-[#6b5149]">
+          <div>
+            <p class="text-xs text-[#9b8178]">Skin type</p>
+            <p class="font-semibold">{{ skinType || '-' }}</p>
+          </div>
+
+          <div>
+            <p class="text-xs text-[#9b8178]">Age</p>
+            <p class="font-semibold">{{ ageGroup || '-' }}</p>
+          </div>
+
+          <div>
+            <p class="text-xs text-[#9b8178]">Budget</p>
+            <p class="font-semibold">{{ budget || '-' }}</p>
+          </div>
+
+          <div>
+            <p class="text-xs text-[#9b8178]">Sun</p>
+            <p class="font-semibold">{{ sunExposure || '-' }}</p>
+          </div>
+
+          <div>
+            <p class="text-xs text-[#9b8178]">Water</p>
+            <p class="font-semibold">{{ waterLevel || '-' }}</p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="mb-1 text-xs text-[#9b8178]">Concerns</p>
+
+            <div class="flex flex-wrap gap-2">
+              <span
+                *ngFor="let c of concerns"
+                class="rounded-full bg-[#f1ddd6] px-3 py-1 text-xs text-[#6b5149]"
+              >
+                {{ c }}
+              </span>
+
+              <span *ngIf="concerns.length === 0" class="text-xs text-[#9b8178]">
+                -
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-5 rounded-2xl border p-4 text-sm"
+          [ngClass]="isFormValid() ? 'border-green-200 bg-green-50 text-green-700' : 'border-red-100 bg-red-50 text-red-500'"
+        >
+          {{ isFormValid() ? 'Ready to generate your routine.' : 'Please answer all questions first.' }}
+        </div>
+      </div>
+    </div>
+
+
+<!-- AI Loading Overlay -->
+<div
+  *ngIf="isLoading"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-md"
+>
+  <div class="w-[390px] rounded-[32px] bg-white p-8 text-center shadow-2xl">
+
+    <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-[28px] bg-[#fff1eb] text-4xl shadow-sm animate-pulse">
+      🤖
+    </div>
+
+    <h2 class="text-xl font-semibold text-[#4b3730]">
+      AI Skin Analysis
+    </h2>
+
+    <p class="mt-2 text-sm text-[#8b746b]">
+      Please wait while we create your personalized skincare plan.
+    </p>
+
+    <!-- Current AI Step -->
+    <div class="mt-6 rounded-2xl border border-[#eadbd5] bg-[#fffaf8] p-4">
+      <p class="text-sm font-medium text-[#7a4b42] animate-pulse">
+        {{ aiSteps[aiStep] }}
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="mt-6 space-y-3 text-left">
+
+      <div
+        *ngFor="let step of aiSteps; let i = index"
+        class="flex items-center gap-3 text-sm transition-all duration-300"
+        [ngClass]="i <= aiStep ? 'text-[#6b5149]' : 'text-[#c8b8b0]'"
+      >
+
+        <!-- Circle -->
+        <span
+          class="flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300"
+
+          [ngClass]="
+            i < aiStep
+              ? 'bg-[#d9afa3] text-white'
+              : i === aiStep
+              ? 'bg-[#f3d7cf] text-[#7a4b42] animate-pulse'
+              : 'bg-[#f2e7e2] text-[#b8a59d]'
+          "
+        >
+
+          {{ i < aiStep ? '✓' : i + 1 }}
+
+        </span>
+
+        <!-- Step Text -->
+        <span
+          [ngClass]="i === aiStep ? 'font-semibold' : ''"
+        >
+          {{ step }}
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="mt-6 h-2 overflow-hidden rounded-full bg-[#f3e3dc]">
+
+      <div
+        class="h-full rounded-full bg-[#d9afa3] transition-all duration-700"
+        [style.width.%]="((aiStep + 1) / aiSteps.length) * 100"
+      ></div>
+
+    </div>
+
+    <!-- Percentage -->
+    <p class="mt-3 text-xs text-[#9b8178]">
+      {{ ((aiStep + 1) / aiSteps.length) * 100 | number:'1.0-0' }}%
+      completed
+    </p>
+
+  </div>
+</div>
+
+<!-- Login Warning -->
+<div
+  *ngIf="showLoginWarning"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+>
+  <div class="w-[360px] rounded-[32px] bg-white p-8 text-center shadow-2xl">
+
+    <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[24px] bg-[#fff1eb] text-3xl">
+      🔒
+    </div>
+
+    <h2 class="text-2xl font-semibold text-[#4b3730]">
+      Sign in required
+    </h2>
+
+    <p class="mt-3 text-sm leading-7 text-[#7d655d]">
+      Please sign in first to continue to the AI skin analysis.
+    </p>
+
+    <div class="mt-6 h-2 overflow-hidden rounded-full bg-[#f3e3dc]">
+      <div class="h-full w-full animate-pulse rounded-full bg-[#d9afa3]"></div>
+    </div>
+
+    <p class="mt-3 text-xs text-[#a18880]">
+      Redirecting to login...
+    </p>
+
+  </div>
+</div>
+</div>
+</section>

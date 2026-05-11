@@ -1,0 +1,147 @@
+<div class="min-h-screen bg-[#f7f2ef] text-slate-800">
+  <div class="grid min-h-screen grid-cols-1 lg:grid-cols-[260px_1fr]">
+
+    <!-- Sidebar -->
+    <aside class="border-r border-[#eadad3] bg-[#fcf8f6] p-5">
+
+      <!-- logo -->
+      <div class="mb-8 flex items-center gap-3">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f2ddd5] text-lg text-[#b77b6d] shadow-sm">
+          ✦
+        </div>
+
+        <div>
+          <h2 class="text-sm font-semibold">SkinCare Admin</h2>
+          <p class="text-xs text-slate-500">Management Panel</p>
+        </div>
+      </div>
+
+      <!-- nav -->
+      <nav class="space-y-2">
+
+        <a
+          routerLink="/admin/dashboard"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>📊</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a
+          routerLink="/admin/products"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>📦</span>
+          <span>Products</span>
+        </a>
+
+        <a
+          routerLink="/admin/routines"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>🧴</span>
+          <span>Routines</span>
+        </a>
+
+        <a
+          routerLink="/admin/conflicts"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>⚠️</span>
+          <span>Conflicts</span>
+        </a>
+
+        <a
+          routerLink="/admin/users"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>👥</span>
+          <span>Users</span>
+        </a>
+
+        <a
+          routerLink="/admin/questions"
+          routerLinkActive="bg-[#e8d2c9] text-[#8f6153] shadow-sm"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+        >
+          <span>❓</span>
+          <span>Questions</span>
+        </a>
+
+      </nav>
+
+      <!-- back -->
+      <a
+        routerLink="/"
+        class="mt-10 flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600 transition hover:bg-[#f4e7e2]"
+      >
+        <span>↩</span>
+        <span>Back to User</span>
+      </a>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="p-4 md:p-6">
+
+      <!-- topbar -->
+      <div class="mb-4 flex items-center justify-between">
+
+        <!-- small info -->
+        <div class="flex items-center gap-3 rounded-2xl border border-[#eadad3] bg-white px-4 py-3 shadow-sm">
+
+          <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f7ebe6] text-lg">
+            ✨
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-slate-800">
+              AI SkinCare Dashboard
+            </p>
+
+            <p class="text-xs text-slate-500">
+              Manage users, products and smart routines
+            </p>
+          </div>
+
+        </div>
+
+        <!-- right -->
+        <div class="flex flex-wrap items-center gap-3">
+
+          <a
+            routerLink="/"
+            class="rounded-2xl border border-[#eadad3] bg-white px-4 py-3 text-sm text-slate-600 shadow-sm transition hover:bg-[#f4e7e2]"
+          >
+            View Website
+          </a>
+
+          <div class="flex items-center gap-3 rounded-2xl border border-[#eadad3] bg-white px-4 py-2 shadow-sm">
+
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[#f2ddd5] text-[#8f6153]">
+              A
+            </div>
+
+            <div>
+              <p class="text-sm font-medium">Admin</p>
+              <p class="text-xs text-slate-500">Skincare manager</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- pages -->
+      <router-outlet></router-outlet>
+
+    </main>
+  </div>
+</div>

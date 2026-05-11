@@ -1,0 +1,124 @@
+<div class="space-y-6">
+  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div>
+      <h2 class="text-2xl font-semibold">Users</h2>
+      <p class="mt-1 text-sm text-slate-500">
+        Manage registered users from the backend database.
+      </p>
+    </div>
+
+    <div class="w-full md:w-[320px]">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Search by name, email or role..."
+        class="w-full rounded-2xl border border-[#eadad3] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#d8a99c]"
+      />
+    </div>
+  </div>
+
+  <div
+    *ngIf="isLoading"
+    class="rounded-2xl border border-[#eadad3] bg-white p-4 text-sm text-slate-500"
+  >
+    Loading users...
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Total Users</p>
+      <h3 class="mt-2 text-2xl font-semibold">{{ users.length }}</h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Admins</p>
+      <h3 class="mt-2 text-2xl font-semibold">
+        {{ adminCount }}
+      </h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Regular Users</p>
+      <h3 class="mt-2 text-2xl font-semibold">
+        {{ regularUsersCount }}
+      </h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Search Results</p>
+      <h3 class="mt-2 text-2xl font-semibold">{{ filteredUsers.length }}</h3>
+    </div>
+  </div>
+
+  <div class="rounded-[30px] border border-[#eadad3] bg-white p-6 shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="border-b text-left text-sm text-slate-500">
+            <th class="pb-4 font-medium">ID</th>
+            <th class="pb-4 font-medium">Full Name</th>
+            <th class="pb-4 font-medium">Email</th>
+            <th class="pb-4 font-medium">Role</th>
+            <th class="pb-4 font-medium">Status</th>
+            <th class="pb-4 font-medium">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of filteredUsers" class="border-b last:border-b-0">
+            <td class="py-4 text-sm text-slate-600">
+              {{ user.id }}
+            </td>
+
+            <td class="py-4 text-sm font-medium">
+              {{ user.fullName }}
+            </td>
+
+            <td class="py-4 text-sm text-slate-600">
+              {{ user.email }}
+            </td>
+
+            <td class="py-4 text-sm text-slate-600">
+              <span
+                class="rounded-full px-3 py-1 text-xs font-medium"
+                [ngClass]="{
+                  'bg-[#f6ece8] text-[#8f6153]': user.role === 'Admin',
+                  'bg-slate-100 text-slate-600': user.role !== 'Admin'
+                }"
+              >
+                {{ user.role || 'User' }}
+              </span>
+            </td>
+
+            <td class="py-4">
+              <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+                Active
+              </span>
+            </td>
+
+            <td class="py-4">
+              <button
+                (click)="deleteUser(user)"
+                [disabled]="user.role === 'Admin'"
+                class="rounded-xl px-3 py-2 text-xs transition"
+                [ngClass]="{
+                  'bg-red-50 text-red-600 hover:bg-red-100': user.role !== 'Admin',
+                  'cursor-not-allowed bg-slate-100 text-slate-400': user.role === 'Admin'
+                }"
+              >
+                {{ user.role === 'Admin' ? 'Protected' : 'Delete' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p
+        *ngIf="filteredUsers.length === 0 && !isLoading"
+        class="py-8 text-center text-sm text-slate-500"
+      >
+        No users found.
+      </p>
+    </div>
+  </div>
+</div>

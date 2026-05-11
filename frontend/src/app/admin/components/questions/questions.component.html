@@ -1,0 +1,105 @@
+<div class="space-y-6">
+
+  <div>
+    <h2 class="text-2xl font-semibold">Questions Review</h2>
+
+    <p class="mt-1 text-sm text-slate-500">
+      Review the questions currently used in the Skin Analysis flow.
+    </p>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Total Questions</p>
+      <h3 class="mt-2 text-3xl font-semibold">{{ totalQuestions }}</h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Active Questions</p>
+      <h3 class="mt-2 text-3xl font-semibold">{{ activeQuestions }}</h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Yes / No Questions</p>
+      <h3 class="mt-2 text-3xl font-semibold">{{ yesNoQuestions }}</h3>
+    </div>
+
+    <div class="rounded-[24px] border border-[#eadad3] bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">Question Categories</p>
+      <h3 class="mt-2 text-3xl font-semibold">{{ categoriesCount }}</h3>
+    </div>
+
+  </div>
+
+  <!-- Info -->
+  <div class="rounded-[28px] border border-[#eadad3] bg-[#fffaf8] p-5">
+    <h3 class="text-lg font-semibold text-slate-800">
+      Analysis System Note
+    </h3>
+
+    <p class="mt-2 text-sm leading-7 text-slate-600">
+      These questions are currently connected to the AI-based skincare recommendation flow.
+      User answers affect generated routines, product recommendations, conflicts, and personalized tips.
+    </p>
+  </div>
+
+  <!-- Questions -->
+  <div class="rounded-[30px] border border-[#eadad3] bg-white p-6 shadow-sm">
+
+    <div class="space-y-4">
+
+      <div
+        *ngFor="let item of questions"
+        class="rounded-2xl border border-[#f0e4df] bg-[#fffdfc] p-5"
+      >
+
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+          <div class="flex-1">
+            <div class="mb-3 flex flex-wrap items-center gap-2">
+
+              <span
+                class="rounded-full px-3 py-1 text-xs font-medium"
+                [ngClass]="getCategoryClass(item.category)"
+              >
+                {{ item.category }}
+              </span>
+
+              <span
+                class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700"
+              >
+                {{ item.status }}
+              </span>
+
+            </div>
+
+            <h3 class="text-[15px] font-semibold text-slate-800">
+              {{ item.question }}
+            </h3>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Question Type: {{ item.type }}
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-[#fbf5f2] px-4 py-3 text-center">
+            <p class="text-xs uppercase tracking-wide text-slate-400">
+              Type
+            </p>
+
+            <p class="mt-1 text-sm font-medium text-slate-700">
+              {{ item.type }}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

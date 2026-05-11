@@ -1,0 +1,275 @@
+<section class="min-h-screen bg-[#F7F3F0] px-6 py-10">
+  <div class="mx-auto max-w-7xl">
+
+    <div class="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <div>
+        <span class="inline-flex rounded-full border border-[#e5d7d0] bg-white px-5 py-2 text-sm text-[#8b6f66]">
+          Personalized Routine
+        </span>
+
+        <h1 class="mt-5 text-4xl font-semibold text-[#4b3730]">
+          Your skincare routine
+        </h1>
+
+        <p class="mt-3 max-w-2xl text-lg leading-8 text-[#8b746b]">
+          This routine is generated from your skin analysis, concerns and lifestyle answers.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex justify-end gap-3">
+          <button
+            (click)="goToProducts()"
+            class="rounded-2xl border border-[#d9afa3] bg-white px-6 py-3 text-sm font-medium text-[#6b5149] transition hover:bg-[#fff5f1]"
+          >
+            View Products
+          </button>
+
+          <button
+            (click)="goToDashboard()"
+            class="rounded-2xl bg-[#d9afa3] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#c99588]"
+          >
+            Dashboard
+          </button>
+        </div>
+
+        <div class="rounded-[24px] border border-[#e2d3cc] bg-white p-5 shadow-sm ai-card-hover">
+          <p class="text-xs uppercase tracking-wide text-[#9b8178]">
+            Focus
+          </p>
+
+          <p class="mt-2 text-sm leading-6 text-[#6b5149]">
+            {{ focusCard }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Summary -->
+    <div class="mb-6 rounded-[28px] border border-[#e2d3cc] bg-white p-5 shadow-sm ai-card-hover fade-up">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <span class="inline-flex rounded-full bg-[#fff1eb] px-4 py-2 text-sm text-[#9a6b5b]">
+            AI Skin Intelligence
+          </span>
+
+          <h2 class="mt-3 text-2xl font-semibold text-[#4b3730]">
+            Smart skin summary
+          </h2>
+
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-[#8b746b]">
+            The system analyzed your answers and calculated hydration level, sensitivity risk and routine match.
+          </p>
+        </div>
+
+        <div class="rounded-[22px] border border-[#eadbd5] bg-[#fcfaf8] px-5 py-4">
+          <p class="text-xs uppercase tracking-wide text-[#9b8178]">
+            Main Goal
+          </p>
+
+          <p class="mt-1 text-lg font-semibold text-[#4b3730]">
+            {{ getGoal() }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-[#eadbd5] bg-[#fcfaf8] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-md">
+          <p class="text-xs uppercase tracking-wide text-[#9b8178]">
+            Hydration Score
+          </p>
+
+          <h3 class="mt-2 text-2xl font-semibold text-[#4b3730]">
+            {{ getHydrationScore() }}%
+          </h3>
+
+          <p class="mt-2 text-sm leading-6 text-[#8b746b]">
+            Based on water intake, dryness and barrier needs.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[#eadbd5] bg-[#fcfaf8] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-md">
+          <p class="text-xs uppercase tracking-wide text-[#9b8178]">
+            Sensitivity Risk
+          </p>
+
+          <h3 class="mt-2 text-2xl font-semibold text-[#4b3730]">
+            {{ getSensitivityLevel() }}
+          </h3>
+
+          <p class="mt-2 text-sm leading-6 text-[#8b746b]">
+            Based on irritation, allergies and selected skin type.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-[#eadbd5] bg-[#fcfaf8] p-4 transition duration-300 hover:-translate-y-1 hover:shadow-md">
+          <p class="text-xs uppercase tracking-wide text-[#9b8178]">
+            Routine Match
+          </p>
+
+          <h3 class="mt-2 text-2xl font-semibold text-[#4b3730]">
+            {{ getRoutineMatch() }}%
+          </h3>
+
+          <p class="mt-2 text-sm leading-6 text-[#8b746b]">
+            AI confidence based on your answers and selected routine.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 rounded-[22px] border border-[#eadbd5] bg-[#fffdfc] p-4">
+        <h3 class="text-lg font-semibold text-[#4b3730]">
+          Why this routine?
+        </h3>
+
+        <div class="mt-4 grid gap-3 md:grid-cols-2">
+          <div
+            *ngFor="let note of aiNotes"
+            class="rounded-2xl border border-[#f0e4df] bg-white px-4 py-3 text-sm leading-6 text-[#8b746b] transition duration-300 hover:bg-[#fff9f6]"
+          >
+            ✨ {{ note }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div class="card-enter rounded-[30px] border border-[#e2d3cc] bg-white p-6 shadow-sm ai-card-hover">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-[#4b3730]">
+              Morning Routine
+            </h2>
+            <p class="text-sm text-[#8b746b]">
+              Cleanse, treat, hydrate and protect.
+            </p>
+          </div>
+
+          <div class="rounded-full bg-[#fff1eb] px-4 py-2 text-sm text-[#9a6b5b]">
+            AM
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div
+            *ngFor="let item of morningRoutine"
+            class="rounded-[24px] border border-[#eee2dc] bg-[#fcfaf8] p-5"
+          >
+            <div class="flex gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f1ddd6] font-semibold text-[#6b5149]">
+                {{ item.step }}
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-[#4b3730]">
+                  {{ item.title }}
+                </h3>
+
+                <p class="text-sm text-[#9b8178]">
+                  {{ item.type }}
+                </p>
+
+                <p class="mt-2 text-sm leading-6 text-[#8b746b]">
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-enter-delay-1 rounded-[30px] border border-[#e2d3cc] bg-white p-6 shadow-sm ai-card-hover">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-[#4b3730]">
+              Night Routine
+            </h2>
+            <p class="text-sm text-[#8b746b]">
+              Repair, calm and support skin renewal.
+            </p>
+          </div>
+
+          <div class="rounded-full bg-[#efe6ff] px-4 py-2 text-sm text-[#6f5d91]">
+            PM
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div
+            *ngFor="let item of nightRoutine"
+            class="rounded-[24px] border border-[#eee2dc] bg-[#fcfaf8] p-5"
+          >
+            <div class="flex gap-4">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f1ddd6] font-semibold text-[#6b5149]">
+                {{ item.step }}
+              </div>
+
+              <div>
+                <h3 class="font-semibold text-[#4b3730]">
+                  {{ item.title }}
+                </h3>
+
+                <p class="text-sm text-[#9b8178]">
+                  {{ item.type }}
+                </p>
+
+                <p class="mt-2 text-sm leading-6 text-[#8b746b]">
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <div class="card-enter-delay-2 rounded-[30px] border border-[#e2d3cc] bg-white p-6 shadow-sm ai-card-hover">
+        <h2 class="text-2xl font-semibold text-[#4b3730]">
+          Selected Profile
+        </h2>
+
+        <div class="mt-5 space-y-3 text-sm text-[#6b5149]">
+          <p><b>Skin type:</b> {{ analysis?.skinType }}</p>
+          <p><b>Budget:</b> {{ analysis?.budget }}</p>
+          <p><b>Sun exposure:</b> {{ analysis?.sunExposure }}</p>
+          <p><b>Water intake:</b> {{ analysis?.waterLevel }}</p>
+          <p><b>Concerns:</b> {{ analysis?.concerns?.join(', ') }}</p>
+        </div>
+      </div>
+
+      <div class="card-enter-delay-3 rounded-[30px] border border-[#e2d3cc] bg-white p-6 shadow-sm ai-card-hover">
+        <h2 class="text-2xl font-semibold text-[#4b3730]">
+          Helpful Tips
+        </h2>
+
+        <div class="mt-5 grid gap-4 md:grid-cols-2">
+          <div
+            *ngFor="let tip of helpfulTips"
+            class="rounded-2xl border border-[#eadbd5] bg-[#fcfaf8] p-4 text-sm leading-6 text-[#8b746b]"
+          >
+            {{ tip }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="showBlockedMessage"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+    >
+      <div class="w-[330px] rounded-[28px] bg-white p-8 text-center shadow-xl">
+        <div class="mb-4 text-3xl">⚠️</div>
+
+        <h2 class="text-lg font-semibold text-[#4b3730]">
+          Complete Skin Analysis First
+        </h2>
+
+        <p class="mt-2 text-sm text-[#8b746b]">
+          Please answer the skin analysis questions before generating your routine.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
