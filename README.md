@@ -35,11 +35,7 @@ A Full-Stack web application that provides personalized skincare routines based 
 
 ---
 
-## 📸 Screenshots
 
-Screenshots will be added soon.
-
----
 
 ## 👩‍💻 Author
 
